@@ -74,6 +74,7 @@ int main(int argc,
 
     int line = 0;
     int printLine = 1;
+    int newLine = 0;
 
     int flipflop = 1;
     for(int i = 0; i < read; i++){
@@ -81,7 +82,7 @@ int main(int argc,
             if(foutput != NULL){
                 fprintf(foutput, "%07x ", line);
             }
-            printf("%07x ", line);
+            printf("\n%07x ", line);
             printLine = 0;
         }
         printf("%02x", content[i]);
@@ -101,12 +102,13 @@ int main(int argc,
         }
         
         line++;
-        if(i == 15){
+        newLine++;
+        if(newLine == 16){
             if(foutput != NULL){
                 fprintf(foutput, "\n");
             }
-            printf("\n");
             printLine = 1;
+            newLine=0;
         }
     }
     printf("\n%07x ", line);
@@ -115,6 +117,7 @@ int main(int argc,
         line = 0;
         printLine = 1;
         flipflop = 1;
+        newLine = 0;
         printf("\nReverse hex:\n");
         if(foutput != NULL){
             fprintf(foutput, "\nReverse hex:\n");
@@ -124,7 +127,7 @@ int main(int argc,
                 if(foutput != NULL){
                     fprintf(foutput, "%07x ", line);
                 }
-                printf("%07x ", line);
+                printf("\n%07x ", line);
                 printLine = 0;
             }
             printf("%02x", content2[i]);
@@ -141,12 +144,12 @@ int main(int argc,
                 }
             }
             line++;
-            if(i == 15){
+            if(newLine == 15){
                 if(foutput != NULL){
                     fprintf(foutput, "\n");
                 }
-                printf("\n");
                 printLine = 1;
+                newLine = 0;
             }
         }
         printf("\n%07x ", line);
